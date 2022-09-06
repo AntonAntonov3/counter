@@ -29,10 +29,9 @@ class ViewController: UIViewController {
     // Почти мотивационный текст
     private var demotivation = ["Поднажми", "Ты можешь больше!", "Не подводи маму!", "Отрицательный рост, тоже рост", "Бывало и лучше", "Сегодня просто не твой день", "Может это не твое?", "Сходи отдохни", "Со всеми бывает", "А разговоров то было", "Сделаем вид, что этого не было"]
     
-    //Создаем свой цвет
-    private let colorOne = UIColor(red: 0.2, green: 1, blue: 0.1, alpha: 1)
-    private let colorTwo = UIColor(red: 1, green: 0.0, blue: 0.0, alpha: 0.7)
-    private let colorThree = UIColor(red: 1, green: 0.55, blue: 0.0, alpha: 1)
+    //Создаем свой цвета
+    private let colorClearButton = UIColor(red: 1, green: 0.0, blue: 0.0, alpha: 0.7)
+    private let colorBackground = UIColor(red: 1, green: 0.55, blue: 0.0, alpha: 1)
     
     
     override func viewDidLoad() {
@@ -56,14 +55,14 @@ class ViewController: UIViewController {
         counter.text = "\(count)"
 
         
-        counterButton.backgroundColor = colorThree
+        counterButton.backgroundColor = colorBackground
         counterButton.layer.cornerRadius = 20
         
-        counterButtonTwo.backgroundColor = colorThree
+        counterButtonTwo.backgroundColor = colorBackground
         counterButtonTwo.layer.cornerRadius = 20
         
         
-        clearButton.backgroundColor = colorTwo
+        clearButton.backgroundColor = colorClearButton
         clearButton.setTitle(" RESET", for: .normal)
         clearButton.setTitleColor(.white, for: .normal)
         clearButton.layer.cornerRadius = 10

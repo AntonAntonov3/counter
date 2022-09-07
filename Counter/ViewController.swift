@@ -7,29 +7,26 @@
 
 
 
-
-// На этот спринт выделено было 14 дней, а заканчивать его за 1 и бездельничать еще 13 мне не хотелось, поэтому вы сами виноваты, что даете так мало заданий. Так что, воооот такой у меня получился счетчик :)
-
 import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet private weak var counterButton: UIButton!
-    @IBOutlet private weak var counter: UILabel!
+    @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet private weak var clearButton: UIButton!
-    @IBOutlet private weak var counterButtonTwo: UIButton!
-    @IBOutlet private weak var factor: UISegmentedControl!
+    @IBOutlet private weak var counterTwoButton: UIButton!
+    @IBOutlet private weak var factorSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var valueLabel: UILabel!
-    @IBOutlet private weak var motivLabel: UILabel!
+    @IBOutlet private weak var motivationLabel: UILabel!
     private var count: Int = 0
     private var factorCount: Int = 1
     private var timer = Timer()
     
     // Мотивационный текст
-    private var motivWords = ["Молодец!", "Ты сможешь!", "Так держать!", "Don't stop!", "Just Do It!", "У самурая нет цели, у самурая есть путь!", "Только вперед!", "Не останавливайся!", "Ты сможешь!", "Я в тебя верю!", "У тебя все получится!"]
+    private var motivationWords = ["Молодец!", "Ты сможешь!", "Так держать!", "Don't stop!", "Just Do It!", "Только вперед!", "Не останавливайся!", "Я в тебя верю!", "У тебя все получится!"]
     // Почти мотивационный текст
-    private var demotivation = ["Поднажми", "Ты можешь больше!", "Не подводи маму!", "Отрицательный рост, тоже рост", "Бывало и лучше", "Сегодня просто не твой день", "Может это не твое?", "Сходи отдохни", "Со всеми бывает", "А разговоров то было", "Сделаем вид, что этого не было"]
+    private var demotivationWords = ["Поднажми", "Ты можешь больше!", "Не подводи маму!", "Отрицательный рост, тоже рост", "Бывало и лучше", "Может это не твое?", "Сходи отдохни", "Со всеми бывает", "А разговоров то было", "Сделаем вид, что этого не было"]
     
-    //Создаем свой цвета
+    //Создаем свои цвета
     private let colorClearButton = UIColor(red: 1, green: 0.0, blue: 0.0, alpha: 0.7)
     private let colorBackground = UIColor(red: 1, green: 0.55, blue: 0.0, alpha: 1)
     
@@ -39,9 +36,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         clearButton.isHidden = true
-        factor.selectedSegmentIndex = 0
+        factorSegmentedControl.selectedSegmentIndex = 0
         
-//Редактирование визуалицаии лейбла и кнопок
+        //Редактирование визуалицаии лейбла и кнопок
         view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
         valueLabel.text = "" // В ТЗ должно быть написано "Значение счетчика:" но так не красиво
@@ -50,16 +47,16 @@ class ViewController: UIViewController {
         valueLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 23.0)
         
         
-        counter.textColor = .white
-        counter.font = counter.font.withSize(100)
-        counter.text = "\(count)"
-
+        counterLabel.textColor = .white
+        counterLabel.font = counterLabel.font.withSize(100)
+        counterLabel.text = "\(count)"
+        
         
         counterButton.backgroundColor = colorBackground
         counterButton.layer.cornerRadius = 20
         
-        counterButtonTwo.backgroundColor = colorBackground
-        counterButtonTwo.layer.cornerRadius = 20
+        counterTwoButton.backgroundColor = colorBackground
+        counterTwoButton.layer.cornerRadius = 20
         
         
         clearButton.backgroundColor = colorClearButton
@@ -67,96 +64,88 @@ class ViewController: UIViewController {
         clearButton.setTitleColor(.white, for: .normal)
         clearButton.layer.cornerRadius = 10
         
-        motivLabel.textAlignment = .center
-        motivLabel.textColor = .white
-        motivLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 23.0)
-        motivLabel.text = ""
+        motivationLabel.textAlignment = .center
+        motivationLabel.textColor = .white
+        motivationLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 23.0)
+        motivationLabel.text = ""
         
-        factor.selectedSegmentTintColor = .systemGreen
-}
+        factorSegmentedControl.selectedSegmentTintColor = .systemGreen
+    }
     
     
     // Выбираем множитель
-    @IBAction private func factorButt(_ sender: UISegmentedControl) {
+    @IBAction private func didTapFactorSegmentControl(_ sender: UISegmentedControl) {
         
-        switch factor.selectedSegmentIndex{
-        case 0:
+        if factorSegmentedControl.selectedSegmentIndex == 0{
             factorCount = 1
-            factor.selectedSegmentTintColor = .systemGreen
-        case 1:
+            factorSegmentedControl.selectedSegmentTintColor = .systemGreen
+        }else if factorSegmentedControl.selectedSegmentIndex == 1{
             factorCount = 3
-            factor.selectedSegmentTintColor = .systemOrange
-        case 2:
+            factorSegmentedControl.selectedSegmentTintColor = .systemOrange
+        }else if factorSegmentedControl.selectedSegmentIndex == 2{
             factorCount = 10
-            factor.selectedSegmentTintColor = .systemRed
-        default:
-            break
+            factorSegmentedControl.selectedSegmentTintColor = .systemRed
         }
     }
     
     
     //Увелечение count или сброс значения, в зависимости от выбранной кнопки
-    @IBAction private func pressButton(_ sender: UIButton) {
+    @IBAction private func increaseNumber(_ sender: UIButton) {
         clearButton.isHidden = false
-        
-        
-        if sender.tag == 0{
-            count += factorCount
-            counter.text = "\(count)"
-            motivashion(x: count)
-        }else if sender.tag == 1{
-            count -= factorCount
-            counter.text = "\(count)"
-            motivashion(x: count)
-        }else{
-            counter.text = "\(count)"
-            counter.textColor = .white
-            clearButton.isHidden = true
-            factor.selectedSegmentIndex = 0
-            factor.selectedSegmentTintColor = .systemGreen
-            factorCount = 1
-            motivLabel.text = ""
-            timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(countTimer), userInfo: nil, repeats: true)
-            
-            
-        }
-        
-        
-        // Выбор фразы в зависимости от значения count
-        func motivashion (x: Int){
-                switch x{
-                case ..<0:
-                    motivLabel.text = demotivation.randomElement()
-                    counter.textColor = .red
-                case 0... :
-                    motivLabel.text = motivWords.randomElement()
-                    counter.textColor = #colorLiteral(red: 0, green: 0.8958038538, blue: 0, alpha: 1)
-                default:
-                    break
-                    
-                }
- 
-            }
+        count += factorCount
+        counterLabel.text = "\(count)"
+        phraseSelection(x: count)
     }
- 
-
-    @objc private func countTimer(x: Double){
-            
-            if count>0{
-                count-=1
-            }else if count<0{
-                count+=1
-                
-            }
-        
-            if count==0{
-                timer.invalidate()
-            }
-            counter.text = "\(count)"
-        
-        }
+    
+    @IBAction private func decreaseNumber(_ sender: Any) {
+        clearButton.isHidden = false
+        count -= factorCount
+        counterLabel.text = "\(count)"
+        phraseSelection(x: count)
+    }
+    
+    @IBAction private func resetCounter(_ sender: Any) {
+        counterLabel.text = "\(count)"
+        counterLabel.textColor = .white
+        clearButton.isHidden = true
+        factorSegmentedControl.selectedSegmentIndex = 0
+        factorSegmentedControl.selectedSegmentTintColor = .systemGreen
+        factorCount = 1
+        motivationLabel.text = ""
+        timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(countTimer), userInfo: nil, repeats: true)
+    }
 }
 
+extension ViewController {
     
+    // Выбор фразы в зависимости от значения count
+    func phraseSelection (x: Int){
+        switch x{
+        case ..<0:
+            motivationLabel.text = demotivationWords.randomElement()
+            counterLabel.textColor = .red
+        case 0... :
+            motivationLabel.text = motivationWords.randomElement()
+            counterLabel.textColor = #colorLiteral(red: 0, green: 0.8958038538, blue: 0, alpha: 1)
+        default:
+            break
+        }
+    }
+    
+    @objc private func countTimer(x: Double){
+        
+        if count>0{
+            count-=1
+        }else if count<0{
+            count+=1
+        }
+        if count==0{
+            timer.invalidate()
+        }
+        counterLabel.text = "\(count)"
+    }
+}
+
+
 
 

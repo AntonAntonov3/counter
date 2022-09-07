@@ -42,7 +42,7 @@
                                     <color key="baseForegroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="pressButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KSI-a2-hPD"/>
+                                    <action selector="increaseNumber:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GFy-7h-vUs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PfS-GG-CWq">
@@ -59,7 +59,7 @@
                                     <color key="baseForegroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="pressButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oiz-fe-4kg"/>
+                                    <action selector="decreaseNumber:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Obz-fc-z0A"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="V4B-qM-QHO">
@@ -72,7 +72,7 @@
                                 </segments>
                                 <color key="selectedSegmentTintColor" red="1" green="0.61954897925967267" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="factorButt:" destination="BYZ-38-t0r" eventType="valueChanged" id="JFy-TR-DxN"/>
+                                    <action selector="didTapFactorSegmentControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="oeI-bV-6SI"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7S-uP-Km1">
@@ -108,7 +108,7 @@
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="pressButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6IM-ve-n54"/>
+                                    <action selector="resetCounter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yfO-ro-tPB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -138,11 +138,11 @@
                     </view>
                     <connections>
                         <outlet property="clearButton" destination="NWd-rJ-4QM" id="wYz-Ad-L0k"/>
-                        <outlet property="counter" destination="eX7-mj-0tc" id="3co-dM-U1F"/>
                         <outlet property="counterButton" destination="Zta-9C-hBp" id="ELg-1G-YGq"/>
-                        <outlet property="counterButtonTwo" destination="PfS-GG-CWq" id="gjr-dH-fPB"/>
-                        <outlet property="factor" destination="V4B-qM-QHO" id="1wa-zg-33z"/>
-                        <outlet property="motivLabel" destination="I2N-Eo-bCd" id="7xK-XB-eUq"/>
+                        <outlet property="counterLabel" destination="eX7-mj-0tc" id="HSU-8e-kh4"/>
+                        <outlet property="counterTwoButton" destination="PfS-GG-CWq" id="sTP-FO-YHJ"/>
+                        <outlet property="factorSegmentedControl" destination="V4B-qM-QHO" id="jvd-6b-dEk"/>
+                        <outlet property="motivationLabel" destination="I2N-Eo-bCd" id="QBg-lB-j3U"/>
                         <outlet property="valueLabel" destination="q7S-uP-Km1" id="j2j-tS-igE"/>
                     </connections>
                 </viewController>
